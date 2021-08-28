@@ -33,7 +33,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
         binding?.usersListView?.adapter = adapter
         viewModel.getUsers().observe(viewLifecycleOwner) {
-
+            adapter.submitList(it)
         }
     }
 

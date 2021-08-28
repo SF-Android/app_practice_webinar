@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class UsersMapperImpl
 @Inject constructor(
-) : UsersMapper<UsersResponse, UserResponse> {
+) : UsersMapper<@JvmSuppressWildcards UsersResponse, @JvmSuppressWildcards UserResponse> {
 
     override fun map(items: UsersResponse): List<User> {
         return items.users.map {

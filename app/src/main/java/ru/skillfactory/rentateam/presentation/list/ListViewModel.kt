@@ -1,6 +1,7 @@
 package ru.skillfactory.rentateam.presentation.list
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,7 +38,7 @@ class ListViewModel
                     users.value = it
                 },
                 { error ->
-
+                    Log.e("", error.toString())
                 }
             )
     }

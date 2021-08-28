@@ -12,7 +12,7 @@ import javax.inject.Inject
 class UsersRepositoryImpl
 @Inject constructor(
     private val api: UsersApi,
-    private val mapper: UsersMapper<UsersResponse, UserResponse>,
+    private val mapper: @JvmSuppressWildcards UsersMapper<UsersResponse, UserResponse>,
 ) : UsersRepository {
 
     override fun getUsers(): Single<List<User>> {
