@@ -9,11 +9,13 @@ import ru.skillfactory.rentateam.databinding.UserItemBinding
 import ru.skillfactory.rentateam.domain.model.User
 import ru.skillfactory.rentateam.presentation.list.UsersAdapter.UserViewHolder
 
-class UsersAdapter : ListAdapter<User, UserViewHolder>(UsersDiffCallback) {
+class UsersAdapter(
+    private val onItemClickAction: ((User) -> Unit)? = null
+) : ListAdapter<User, UserViewHolder>(UsersDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return UserViewHolder(binding)
+        return UserViewHolder(binding, onItemClickAction)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
@@ -22,7 +24,8 @@ class UsersAdapter : ListAdapter<User, UserViewHolder>(UsersDiffCallback) {
     }
 
     class UserViewHolder(
-        val binding: UserItemBinding
+        val binding: UserItemBinding,
+        private val onItemClickAction: ((User) -> Unit)? = null
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: User) {
@@ -32,6 +35,7 @@ class UsersAdapter : ListAdapter<User, UserViewHolder>(UsersDiffCallback) {
                 .load(user.avatarUrl)
                 .fit()
                 .into(binding.userItemIcon)
+            binding.root.setOnClickListener { onItemClickAction?.invoke(user) }
         }
     }
 }
