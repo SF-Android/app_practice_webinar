@@ -2,29 +2,10 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_graph"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/users_graph">
 
-    <fragment
-        android:id="@+id/listFragment"
-        android:label="fragment_list"
-        android:name="ru.skillfactory.rentateam.presentation.list.ListFragment"
-        tools:layout="@layout/fragment_list">
-        <action
-            android:id="@+id/action_open_item"
-            app:destination="@id/itemFragment" />
-    </fragment>
+    <include app:graph="@navigation/users_graph" />
+    <include app:graph="@navigation/about_graph" />
 
-    <fragment
-        android:id="@+id/itemFragment"
-        android:label="fragment_item"
-        android:name="ru.skillfactory.rentateam.presentation.item.ItemFragment"
-        tools:layout="@layout/fragment_item">
-
-        <argument
-            android:name="user"
-            app:argType="ru.skillfactory.rentateam.domain.model.User" />
-
-    </fragment>
 </navigation>

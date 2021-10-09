@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">RentaTeam</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_users">Пользователи</string>
+    <string name="title_about">О программе</string>
+
+    <string name="label_users">Пользователи</string>
+    <string name="label_user">Пользователь</string>
+    <string name="label_about">О программе</string>
 </resources>
