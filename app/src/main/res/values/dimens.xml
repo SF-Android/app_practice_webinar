@@ -3,7 +3,7 @@
     <dimen name="spacing">16dp</dimen>
     <dimen name="user_item_icon">48dp</dimen>
 
-    <dimen name="container_padding">48dp</dimen>
+    <dimen name="container_padding">16dp</dimen>
     <dimen name="detail_user_icon_size">120dp</dimen>
     <dimen name="vertical_margin">16dp</dimen>
 
