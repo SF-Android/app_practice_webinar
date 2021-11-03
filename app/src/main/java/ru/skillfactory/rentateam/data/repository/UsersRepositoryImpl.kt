@@ -25,5 +25,23 @@ class UsersRepositoryImpl
             .doOnSuccess {
                 dao.insertUsers(dbMapper.mapToDBEntities(it))
             }
+            .onErrorResumeNext { throwable ->
+                getUsersFromDb(throwable)
+            }
+    }
+
+    private fun getUsersFromDb(throwable: Throwable): Single<List<User>> {
+        return Single.fromCallable {
+            try {
+                val users = dao.getUsers()
+                if (users.count() > 0) {
+                    dbMapper.mapEntitesToUsers(users)
+                } else {
+                    throw RuntimeException(throwable)
+                }
+            } catch (exception: Exception) {
+                throw RuntimeException(exception)
+            }
+        }
     }
 }

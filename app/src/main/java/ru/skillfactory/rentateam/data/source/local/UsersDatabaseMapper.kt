@@ -22,4 +22,17 @@ class UsersDatabaseMapper
             )
         }
     }
+
+    fun mapEntitesToUsers(entities: List<UserEntity>): List<User> {
+        return entities.map {
+            User(
+                it.id,
+                it.email,
+                it.firstName,
+                it.lastName,
+                "%s %s".format(it.firstName, it.lastName),
+                it.avatarUrl
+            )
+        }
+    }
 }
