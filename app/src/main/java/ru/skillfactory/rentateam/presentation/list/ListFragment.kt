@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ru.skillfactory.rentateam.R
 import ru.skillfactory.rentateam.databinding.FragmentListBinding
 import ru.skillfactory.rentateam.domain.model.User
+import ru.skillfactory.rentateam.presentation.UiState
 
 @AndroidEntryPoint
 class ListFragment : Fragment(R.layout.fragment_list) {
@@ -37,8 +38,32 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
         binding?.usersListView?.adapter = adapter
         viewModel.getUsers().observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            when (it) {
+                is UiState.Success -> { resolveSuccess(it.value) }
+                is UiState.Failure -> { resolveFailure(it.exception) }
+                is UiState.Loading -> { resolveLoading() }
+            }
+
         }
+    }
+
+    private fun resolveSuccess(items: List<User>) {
+        adapter.submitList(items)
+        binding?.usersListView?.visibility = View.VISIBLE
+        binding?.usersProgressView?.visibility = View.GONE
+        binding?.usersErrorView?.visibility = View.GONE
+    }
+
+    private fun resolveFailure(exception: Throwable?) {
+        binding?.usersListView?.visibility = View.GONE
+        binding?.usersProgressView?.visibility = View.GONE
+        binding?.usersErrorView?.visibility = View.VISIBLE
+    }
+
+    private fun resolveLoading() {
+        binding?.usersListView?.visibility = View.GONE
+        binding?.usersProgressView?.visibility = View.VISIBLE
+        binding?.usersErrorView?.visibility = View.GONE
     }
 
     override fun onDestroyView() {

@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import ru.skillfactory.rentateam.domain.model.User
 import ru.skillfactory.rentateam.domain.repository.UsersRepository
+import ru.skillfactory.rentateam.presentation.UiState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,26 +19,28 @@ class ListViewModel
     private val repository: UsersRepository
 ) : ViewModel() {
 
-    private val users = MutableLiveData<List<User>>()
+    private val users = MutableLiveData<UiState<List<User>>>()
 
     init {
         loadUsers()
     }
 
-    fun getUsers(): LiveData<List<User>> {
+    fun getUsers(): LiveData<UiState<List<User>>> {
         return users
     }
 
     @SuppressLint("CheckResult")
     private fun loadUsers() {
+        users.value = UiState.Loading
         repository.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    users.value = it
+                    users.value = UiState.Success(it)
                 },
                 { error ->
+                    users.value = UiState.Failure(error)
                     Log.e("", error.toString())
                 }
             )

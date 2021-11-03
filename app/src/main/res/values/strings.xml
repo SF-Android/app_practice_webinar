@@ -7,4 +7,9 @@
     <string name="label_users">Пользователи</string>
     <string name="label_user">Пользователь</string>
     <string name="label_about">О программе</string>
+
+    <string name="about_text">Тестовое задание для Rentateam</string>
+
+    <string name="error">Ошибка</string>
+    <string name="error_description">Что то пошло не так</string>
 </resources>

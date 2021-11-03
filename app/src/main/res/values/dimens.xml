@@ -7,4 +7,6 @@
     <dimen name="detail_user_icon_size">120dp</dimen>
     <dimen name="vertical_margin">16dp</dimen>
 
+    <dimen name="progress_size">32dp</dimen>
+
 </resources>
