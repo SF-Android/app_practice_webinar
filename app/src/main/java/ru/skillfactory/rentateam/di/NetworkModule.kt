@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.skillfactory.rentateam.data.source.UsersApi
+import ru.skillfactory.rentateam.data.source.remote.UsersApi
 import javax.inject.Singleton
 
 private const val URL = "https://reqres.in/api/"

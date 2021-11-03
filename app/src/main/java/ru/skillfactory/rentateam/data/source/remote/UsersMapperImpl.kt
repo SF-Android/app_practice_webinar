@@ -1,7 +1,7 @@
-package ru.skillfactory.rentateam.data.mapper
+package ru.skillfactory.rentateam.data.source.remote
 
-import ru.skillfactory.rentateam.data.dto.UserResponse
-import ru.skillfactory.rentateam.data.dto.UsersResponse
+import ru.skillfactory.rentateam.data.source.remote.dto.UserResponse
+import ru.skillfactory.rentateam.data.source.remote.dto.UsersResponse
 import ru.skillfactory.rentateam.domain.mapper.UsersMapper
 import ru.skillfactory.rentateam.domain.model.User
 import javax.inject.Inject

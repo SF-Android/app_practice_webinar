@@ -1,4 +1,4 @@
-package ru.skillfactory.rentateam.data.dto
+package ru.skillfactory.rentateam.data.source.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
